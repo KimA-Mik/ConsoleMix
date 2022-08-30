@@ -1,0 +1,55 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.2.32630.192
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp1", "ConsoleApp1\ConsoleApp1.csproj", "{D895964E-532C-443B-903F-9374058F3E87}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ConsoleApp2", "ConsoleApp2\ConsoleApp2.csproj", "{B9B9120E-16E8-4886-8B3A-116E83564DA2}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DateTimeLooking", "DateTimeLooking\DateTimeLooking.csproj", "{00713CDF-1079-49A0-BA54-81AF51E2D35E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Minesweeper", "Minesweeper\Minesweeper.csproj", "{67F502D0-A417-4F18-9193-C0FDD9E0FF76}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Memory Eater", "Memory Eater\Memory Eater.csproj", "{2136B00D-237C-4D4C-A8DC-D1A55D21AD06}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Image-Ascii", "Image-Ackii\Image-Ascii.csproj", "{09A554A0-7786-4FAF-B687-3D0FAD5EDE99}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D895964E-532C-443B-903F-9374058F3E87}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D895964E-532C-443B-903F-9374058F3E87}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D895964E-532C-443B-903F-9374058F3E87}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D895964E-532C-443B-903F-9374058F3E87}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B9B9120E-16E8-4886-8B3A-116E83564DA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B9B9120E-16E8-4886-8B3A-116E83564DA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B9B9120E-16E8-4886-8B3A-116E83564DA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B9B9120E-16E8-4886-8B3A-116E83564DA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{00713CDF-1079-49A0-BA54-81AF51E2D35E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{00713CDF-1079-49A0-BA54-81AF51E2D35E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{00713CDF-1079-49A0-BA54-81AF51E2D35E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{00713CDF-1079-49A0-BA54-81AF51E2D35E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{67F502D0-A417-4F18-9193-C0FDD9E0FF76}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{67F502D0-A417-4F18-9193-C0FDD9E0FF76}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{67F502D0-A417-4F18-9193-C0FDD9E0FF76}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{67F502D0-A417-4F18-9193-C0FDD9E0FF76}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2136B00D-237C-4D4C-A8DC-D1A55D21AD06}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2136B00D-237C-4D4C-A8DC-D1A55D21AD06}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2136B00D-237C-4D4C-A8DC-D1A55D21AD06}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2136B00D-237C-4D4C-A8DC-D1A55D21AD06}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09A554A0-7786-4FAF-B687-3D0FAD5EDE99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09A554A0-7786-4FAF-B687-3D0FAD5EDE99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09A554A0-7786-4FAF-B687-3D0FAD5EDE99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09A554A0-7786-4FAF-B687-3D0FAD5EDE99}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {868A712C-A4E0-46EE-929A-1B1664879B36}
+	EndGlobalSection
+EndGlobal

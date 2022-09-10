@@ -2,7 +2,7 @@
 {
     internal class AsciiImage
     {
-        public char[] Image { get; private set; }
+        private char[] Image { get; set; }
         public int Width { get; private set; }
         public int Height { get; private set; }
         public char DefaultChar {get; set;}

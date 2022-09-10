@@ -52,17 +52,17 @@ while (isRunning)
 
     Minesweeper.Minesweeper game = new Minesweeper.Minesweeper(width, height, mines);
     Console.Clear();
-    DrawField(game.field, game.fieldWidth, game.fieldHeight, game.selectedCell);
+    DrawField(game.Field, game.FieldWidth, game.FieldHeight, game.SelectedCell);
 
 
     while (true)
     {
-        if (game.victory)
+        if (game.Victory)
         {
             Console.Clear();
             Console.WriteLine("Victory");
         }
-        if (!game.isRunning)
+        if (!game.IsRunning)
         {
             Console.ReadKey(true);
             Console.Clear();
@@ -103,7 +103,7 @@ while (isRunning)
                 break;
 
         }
-        DrawField(game.field, game.fieldWidth, game.fieldHeight, game.selectedCell);
+        DrawField(game.Field, game.FieldWidth, game.FieldHeight, game.SelectedCell);
     }
 }
 Console.Clear();

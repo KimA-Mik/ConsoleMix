@@ -74,9 +74,7 @@ namespace Image_Ascii
 
         public void SwapBuffers()
         {
-            var temp = _data;
-            _data = _outData;
-            _outData = temp;
+            (_data, _outData) = (_outData, _data);
         }
 
         int GetIndex(int x, int y)

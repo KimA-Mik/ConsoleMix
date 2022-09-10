@@ -7,7 +7,7 @@
         {
             Random random = new(DateTime.Now.Millisecond);
             data = new();
-            for (int i = 0; i < count; ++i)
+            for (var i = 0; i < count; ++i)
             {
                 data.Add(new MB(random));
             }

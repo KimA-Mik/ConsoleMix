@@ -2,17 +2,17 @@
 {
     internal class Minesweeper
     {
-        public int fieldWidth { get; }
-        public int fieldHeight { get; }
-        public char[] field { get; }
-        public int selectedCell { get; set; }
-        public bool isRunning { get; set; }
-        public bool victory { get; set; }
+        public int FieldWidth { get; }
+        public int FieldHeight { get; }
+        public char[] Field { get; }
+        public int SelectedCell { get; set; }
+        public bool IsRunning { get; set; }
+        public bool Victory { get; set; }
 
-        private int[] mines;
-        private int minesCount;
-        private bool firstMove;
-        private int cellsLeft;
+        private readonly int[] _mines;
+        private readonly int _minesCount;
+        private bool _firstMove;
+        private int _cellsLeft;
 
         private const char CLOSED_CELL = '@';
         private const char EMPTY_CELL = '.';
@@ -20,102 +20,102 @@
         private const char FLAG_CELL = '^';
         public Minesweeper(int width, int height, int minesCnt)
         {
-            fieldWidth = width;
-            fieldHeight = height;
-            minesCount = minesCnt;
-            mines = new int[minesCount];
-            cellsLeft = width * height;
-            field = new char[width * height];
-            for (int i = 0; i < field.Length; i++)
+            FieldWidth = width;
+            FieldHeight = height;
+            _minesCount = minesCnt;
+            _mines = new int[_minesCount];
+            _cellsLeft = width * height;
+            Field = new char[width * height];
+            for (int i = 0; i < Field.Length; i++)
             {
-                field[i] = CLOSED_CELL;
+                Field[i] = CLOSED_CELL;
             }
-            selectedCell = 0;
-            firstMove = true;
-            isRunning = true;
-            victory = false;
+            SelectedCell = 0;
+            _firstMove = true;
+            IsRunning = true;
+            Victory = false;
         }
 
 
         public void MoveRight()
         {
             int x, y;
-            CellToCoordinate(selectedCell, out x, out y);
-            x = (x + 1) % fieldWidth;
-            selectedCell = CoordinatesToCell(x, y);
+            CellToCoordinate(SelectedCell, out x, out y);
+            x = (x + 1) % FieldWidth;
+            SelectedCell = CoordinatesToCell(x, y);
         }
 
         public void MoveLeft()
         {
             int x, y;
-            CellToCoordinate(selectedCell, out x, out y);
-            x = (x == 0) ? fieldWidth - 1 : x - 1;
-            selectedCell = CoordinatesToCell(x, y);
+            CellToCoordinate(SelectedCell, out x, out y);
+            x = (x == 0) ? FieldWidth - 1 : x - 1;
+            SelectedCell = CoordinatesToCell(x, y);
         }
 
         public void MoveUp()
         {
             int x, y;
-            CellToCoordinate(selectedCell, out x, out y);
-            y = (y + 1) % fieldHeight;
-            selectedCell = CoordinatesToCell(x, y);
+            CellToCoordinate(SelectedCell, out x, out y);
+            y = (y + 1) % FieldHeight;
+            SelectedCell = CoordinatesToCell(x, y);
         }
 
         public void MoveDown()
         {
             int x, y;
-            CellToCoordinate(selectedCell, out x, out y);
-            y = (y == 0) ? fieldHeight - 1 : y - 1;
-            selectedCell = CoordinatesToCell(x, y);
+            CellToCoordinate(SelectedCell, out x, out y);
+            y = (y == 0) ? FieldHeight - 1 : y - 1;
+            SelectedCell = CoordinatesToCell(x, y);
         }
 
         public void MarkCell()
         {
-            if (field[selectedCell] == FLAG_CELL)
+            if (Field[SelectedCell] == FLAG_CELL)
             {
-                field[selectedCell] = CLOSED_CELL;
+                Field[SelectedCell] = CLOSED_CELL;
             }
-            else if (field[selectedCell] == CLOSED_CELL)
+            else if (Field[SelectedCell] == CLOSED_CELL)
             {
-                field[selectedCell] = FLAG_CELL;
+                Field[SelectedCell] = FLAG_CELL;
             }
 
-            cellsLeft = field.Where(x => x == CLOSED_CELL).Count();
-            if (cellsLeft == 0)
+            _cellsLeft = Field.Where(x => x == CLOSED_CELL).Count();
+            if (_cellsLeft == 0)
             {
-                victory = true;
-                isRunning = false;
+                Victory = true;
+                IsRunning = false;
             }
         }
 
         public void MakeMove()
         {
-            if (firstMove)
+            if (_firstMove)
             {
                 Init();
             }
 
-            if (field[selectedCell] != CLOSED_CELL)
+            if (Field[SelectedCell] != CLOSED_CELL)
             {
                 return;
             }
 
-            if (mines.Contains(selectedCell))
+            if (_mines.Contains(SelectedCell))
             {
-                for (int i = 0; i < mines.Length; i++)
+                for (int i = 0; i < _mines.Length; i++)
                 {
-                    field[mines[i]] = BOMB_CELL;
+                    Field[_mines[i]] = BOMB_CELL;
                 }
-                isRunning = false;
+                IsRunning = false;
                 return;
             }
-            OpenFreeCells(selectedCell);
+            OpenFreeCells(SelectedCell);
 
-            cellsLeft = field.Where(x => x == CLOSED_CELL).Count();
-            if (cellsLeft == 0)
+            _cellsLeft = Field.Where(x => x == CLOSED_CELL).Count();
+            if (_cellsLeft == 0)
             {
-                victory = true;
-                isRunning = false;
+                Victory = true;
+                IsRunning = false;
             }
         }
 
@@ -124,13 +124,13 @@
             Random random = new(DateTime.Now.Millisecond);
             int index;
             int selectedX, selectedY;
-            CellToCoordinate(selectedCell, out selectedX, out selectedY);
+            CellToCoordinate(SelectedCell, out selectedX, out selectedY);
             double initialSafeZoneSize;
-            if (field.Length < 100)
+            if (Field.Length < 100)
             {
                 initialSafeZoneSize = 1.5;
             }
-            else if (field.Length < 300)
+            else if (Field.Length < 300)
             {
                 initialSafeZoneSize = 2.5;
             }
@@ -138,23 +138,23 @@
             {
                 initialSafeZoneSize = 3.5;
             }
-            for (int i = 0; i < minesCount; i++)
+            for (int i = 0; i < _minesCount; i++)
             {
                 while (true)
                 {
-                    index = random.Next() % (fieldWidth * fieldHeight);
+                    index = random.Next() % (FieldWidth * FieldHeight);
                     int curX, curY;
                     CellToCoordinate(index, out curX, out curY);
 
-                    if (index != selectedCell && !mines.Contains(index)
+                    if (index != SelectedCell && !_mines.Contains(index)
                         && DistBetweenCells(selectedX, selectedY, curX, curY) > initialSafeZoneSize)
                     {
                         break;
                     }
                 }
-                mines[i] = index;
+                _mines[i] = index;
             }
-            firstMove = false;
+            _firstMove = false;
         }
 
         private int CountSurroundingBobs(int cell)
@@ -165,19 +165,19 @@
 
             for (int curY = y - 1; curY < y + 2; curY++)
             {
-                if (curY < 0 || curY == fieldHeight)
+                if (curY < 0 || curY == FieldHeight)
                 {
                     continue;
                 }
                 for (int curX = x - 1; curX < x + 2; curX++)
                 {
-                    if (curX < 0 || curX == fieldWidth)
+                    if (curX < 0 || curX == FieldWidth)
                     {
                         continue;
                     }
 
                     int curCell = CoordinatesToCell(curX, curY);
-                    if (mines.Contains(curCell))
+                    if (_mines.Contains(curCell))
                     {
                         bobms++;
                     }
@@ -188,7 +188,7 @@
 
         private void OpenFreeCells(int cell, int depth = 0)
         {
-            if (field[cell] != CLOSED_CELL)
+            if (Field[cell] != CLOSED_CELL)
             {
                 return;
             }
@@ -196,11 +196,11 @@
             int num = CountSurroundingBobs(cell);
             if (num == 0)
             {
-                field[cell] = EMPTY_CELL;
+                Field[cell] = EMPTY_CELL;
             }
             else
             {
-                field[cell] = num.ToString()[0];
+                Field[cell] = num.ToString()[0];
                 depth++;
             }
             if (depth < 1)
@@ -209,18 +209,18 @@
                 CellToCoordinate(cell, out x, out y);
                 for (int curY = y - 1; curY < y + 2; curY++)
                 {
-                    if (curY < 0 || curY == fieldHeight)
+                    if (curY < 0 || curY == FieldHeight)
                     {
                         continue;
                     }
                     for (int curX = x - 1; curX < x + 2; curX++)
                     {
-                        if (curX < 0 || curX == fieldWidth)
+                        if (curX < 0 || curX == FieldWidth)
                         {
                             continue;
                         }
                         int curCell = CoordinatesToCell(curX, curY);
-                        if (field[curCell] == CLOSED_CELL && !mines.Contains(curCell))
+                        if (Field[curCell] == CLOSED_CELL && !_mines.Contains(curCell))
                         {
                             OpenFreeCells(curCell, depth);
                         }
@@ -231,13 +231,13 @@
 
         private void CellToCoordinate(int cell, out int x, out int y)
         {
-            y = cell / fieldWidth;
-            x = cell - y * fieldWidth;
+            y = cell / FieldWidth;
+            x = cell - y * FieldWidth;
         }
 
         private int CoordinatesToCell(int x, int y)
         {
-            return x + y * fieldWidth;
+            return x + y * FieldWidth;
         }
 
         private double DistBetweenCells(int x1, int y1, int x2, int y2)

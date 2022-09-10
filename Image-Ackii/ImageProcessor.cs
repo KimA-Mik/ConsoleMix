@@ -4,13 +4,13 @@ namespace Image_Ascii
 {
     internal class ImageProcessor
     {
-        Bitmap _bitmap;
+        readonly Bitmap _bitmap;
         //const string Palette = " .'`^\",:;Il!i><~+_-?][}{1)(|\\/tfjrxnuvczXYUJCLQ0OZmwepdbkhao*#MW&8%B@$";
         //const string Palette = "@%#*++-:. ";
         const string Palette = "$@B%8&WM#*oahkbdpewmZO0QLCJUYXzcvunxrjft/\\|()1{}[]?-_+~<>i!lI;:,\"^`'. ";
         //int gs = 0.2162 * R + 0.7152 * GC + 0.0722 * B;
-        int SectorWidth = 5;
-        int SectorHeight = 10;
+        int _sectorWidth = 5;
+        int _sectorHeight = 10;
         public ImageProcessor(string imgPath)
         {
             _bitmap = new Bitmap(imgPath);
@@ -22,16 +22,16 @@ namespace Image_Ascii
             using (var image = new ImageWrapper(_bitmap, true))
             {
                 if (image.Width < 160)
-                    SectorWidth = 1;
+                    _sectorWidth = 1;
                 else
-                    SectorWidth = image.Width / 160;
-                SectorHeight = SectorWidth * 2;
+                    _sectorWidth = image.Width / 160;
+                _sectorHeight = _sectorWidth * 2;
 
-                ascii.Init(image.Width / SectorWidth, image.Height / SectorHeight);
-                for (int y = 0; y < image.Height; y += SectorHeight)
-                    for (int x = 0; x < image.Width; x += SectorWidth)
+                ascii.Init(image.Width / _sectorWidth, image.Height / _sectorHeight);
+                for (int y = 0; y < image.Height; y += _sectorHeight)
+                    for (int x = 0; x < image.Width; x += _sectorWidth)
                     {
-                        var col = GetSectorColor(image, x, y, SectorWidth, SectorHeight);
+                        var col = GetSectorColor(image, x, y, _sectorWidth, _sectorHeight);
                         char newVal = (char)0;
                         switch (mode)
                         {
@@ -43,7 +43,7 @@ namespace Image_Ascii
                                 break;
                         }
 
-                        ascii[x / SectorWidth, y / SectorHeight] = newVal;
+                        ascii[x / _sectorWidth, y / _sectorHeight] = newVal;
                     }
             }
             return ascii;

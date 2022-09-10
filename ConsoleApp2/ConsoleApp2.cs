@@ -7,7 +7,7 @@ int tries = 0;
 int victoryGoal = random.Next(100);
 while (read != victoryGoal)
 {
-    string input = Console.ReadLine();
+    string? input = Console.ReadLine();
     while (String.IsNullOrWhiteSpace(input))
     {
         input = Console.ReadLine();

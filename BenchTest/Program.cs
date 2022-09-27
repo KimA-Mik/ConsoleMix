@@ -7,6 +7,7 @@ using System.Text;
 BenchmarkRunner.Run<StringConcatVsStringBuilderBenchmark>();
 Console.ReadLine();
 
+[MemoryDi]
 public class StringConcatVsStringBuilderBenchmark
 {
     private readonly string
